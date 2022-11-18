@@ -7,7 +7,7 @@
     </ul>
 <% end %>
 
-<%= form_with(model: @special, local: true ) do |f| %>
+<%= form_with(model: @special, data: {turbo: false}, local: true ) do |f| %>
 
 <p>
 <%= f.label :restaurant %></br>
