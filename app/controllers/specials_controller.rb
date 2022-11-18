@@ -1,4 +1,10 @@
 class SpecialsController < ApplicationController
+  before_action :set_special, only: [:show, :edit, :update, :destroy]
+  
+
+  def show
+  end
+  
   def index
     @specials = Special.all
   end
@@ -8,13 +14,10 @@ class SpecialsController < ApplicationController
   end
 
   def edit
-    @special = Special.find(params[:id])
   end
 
   def update
-    @special = Special.find(params[:id])
-    if @special.update(params.require(:special).permit( :restaurantName, :title, :dayOfWeek,
-      :town, :state, :zip))
+    if @special.update(special_params)
         flash[:notice] = "Special was updated successfully!"
         redirect_to specials_path
     else 
@@ -22,13 +25,8 @@ class SpecialsController < ApplicationController
     end
   end
 
-  def show
-    @special = Special.find(params[:id])
-  end
-
   def create 
-    @special = Special.new(params.require(:special).permit( :restaurantName, :title, :dayOfWeek,
-      :town, :state, :zip))
+      @special = Special.new(special_params)
       if @special.save
         flash[:notice] = "Special was created successfully!"
         redirect_to specials_path
@@ -38,9 +36,19 @@ class SpecialsController < ApplicationController
   end
 
   def destroy
-    @special = Special.find(params[:id])
     @special.destroy
     redirect_to specials_path
+  end
+
+  private
+
+  def set_special
+    @special = Special.find(params[:id])
+  end
+
+  def special_params
+    params.require(:special).permit( :restaurantName, :title, :dayOfWeek,
+      :town, :state, :zip)
   end
 
 
