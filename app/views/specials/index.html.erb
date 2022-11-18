@@ -1,27 +1,30 @@
-<h1 class="text-center mt-4">Specials for Today</h1>
+<body style="background-color:lightgrey;">
+    <h1 class="text-center mt-4">Daily Specials </h1>
 
-<div class="container text-center d-flex flex-wrap">
-    <% @specials.each do |special| %>
-        <div class="row inline ">
-            <div class=" mt-4 ms-4">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                    <h5 class="card-title"><%= special.restaurantName %></h5>
-                    <p class="card-text"><%= special.title %></p>
-                    <p class="card-text">Day: <%= special.dayOfWeek %></p>
-                    <p class="card-text">
-                        <%= link_to 'Edit', edit_special_path(special) %>
-                        <%= link_to "Delete", special_path(special), 
-                        data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
-                    </p>
+    <div class="container text-center d-flex flex-wrap">
+        <% @specials.each do |special| %>
+            <div class="row inline ">
+                <div class=" mt-4 ms-4">
+                    <div class="card" style="width: 18rem; border-radius: 10px; 
+                     border border-5">
+                        <div class="card-body">
+                        <h5 class="card-title"><%= special.restaurantName %></h5>
+                        <p class="card-text"><%= special.title %></p>
+                        <p class="card-text">Day: <%= special.dayOfWeek %></p>
+                        <p class="card-text">
+                            <%= link_to 'Edit', edit_special_path(special) %>
+                            <%= link_to "Delete", special_path(special), 
+                            data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+                        </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    <% end %>
+        <% end %>
 
-</div>
-<%= link_to 'New Special?', new_special_path%>
-
+    </div>
+    <div class="text-center mt-4">
+        <%= link_to 'New Special? Submit it here!', new_special_path%>
+    </div>
 
 
