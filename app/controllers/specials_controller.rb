@@ -41,6 +41,8 @@ class SpecialsController < ApplicationController
     redirect_to specials_path
   end
 
+
+
   private
 
   def set_special

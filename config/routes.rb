@@ -3,5 +3,7 @@ Rails.application.routes.draw do
 
   root "specials#index"
 
+  get '/about', to: 'specials#about'
+
   resources :specials
 end

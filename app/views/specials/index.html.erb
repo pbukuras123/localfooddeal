@@ -1,28 +1,24 @@
 <body style="background-color:lightgrey;">
-    <h1 class="text-center mt-4">Daily Specials </h1>
+    <h1 class="text-center mt-4 mb-5">Today's Specials </h1>
 
-    <div class="container text-center d-flex flex-wrap">
+    <div class=" row row-cols-2 row-cols-md-3 g-4 d-flex justify-content-center">
         <% @specials.each do |special| %>
             <% if (@time.strftime("%A") === special.dayOfWeek) %>
-                <div class="row inline ">
-                    <div class=" mt-4 ms-4">
-                        <div class="card d-flex justify-content-center" style= "width: 18rem; 
-                        height: 15rem;  
-                        border-radius: 50px; 
-                        border-5">
-                            <div class="card-body">
-                            <h5 class="card-title"><%= special.restaurantName %></h5>
-                            <p class="card-text"><%= special.title %></p>
-                            <p class="card-text">Day: <%= special.dayOfWeek %></p>
-                            <p class="card-text">
+                    <div class="card  mt-4 ms-4" style="width: 25rem;">
+                         <div class="d-flex">
+                            <div class="card-body text-center">
+                                <h5 class="card-title fw-bold"><%= special.restaurantName %></h5>
+                                <p class="card-text "><%= special.title %></p>
                                 <%= link_to 'Edit', edit_special_path(special) %>
                                 <%= link_to "Delete", special_path(special), 
-                                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
-                            </p>
+                                        data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
                             </div>
                         </div>
-                    </div>
                 </div>
+
+
+                
+
             <% end %>
         <% end %>
 
