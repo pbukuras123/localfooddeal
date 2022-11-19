@@ -1,5 +1,6 @@
 class SpecialsController < ApplicationController
   before_action :set_special, only: [:show, :edit, :update, :destroy]
+  before_action :set_time, only: [:index]
   
 
   def show
@@ -49,6 +50,10 @@ class SpecialsController < ApplicationController
   def special_params
     params.require(:special).permit( :restaurantName, :title, :dayOfWeek,
       :town, :state, :zip)
+  end
+
+  def set_time
+    @time = Time.zone.now
   end
 
 
